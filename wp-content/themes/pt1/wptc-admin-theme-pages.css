@@ -1,0 +1,29 @@
+/* CSS Styles for Admin Theme Pages */
+.wptc-admin-wrap { margin-top:10px; }
+.wptc-super-headline { border-bottom:3px solid #21759b; padding:10px 10px 5px 10px !important; }
+.wptc-headline {
+    background: #ececec;
+    background: -moz-linear-gradient(top, #dcdcdc 0%, #cccccc 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dcdcdc), color-stop(100%,#cccccc));
+    background: -webkit-linear-gradient(top, #dcdcdc 0%,#cccccc 100%);
+    background: -o-linear-gradient(top, #dcdcdc 0%,#cccccc 100%);
+    background: -ms-linear-gradient(top, #dcdcdc 0%,#cccccc 100%);
+    background: linear-gradient(to bottom, #dcdcdc 0%,#cccccc 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dcdcdc', endColorstr='#cccccc',GradientType=0 );
+    -webkit-border-radius:20px;
+    -moz-border-radius:20px;
+    border-radius:20px;
+    border:1px solid #c9c9c9;
+    text-indent:16px;
+    color:#000000;
+    padding:10px 0px !important;
+    width:100%;
+}
+.wptc-content { margin-left:20px; }
+.wptc-checkmark { color:#21759b; font-size:large; }
+.wptc-checkmark:after { content:'\2713'; }
+.status-draft { background: #FFFF99 !important; }
+.status-pending { background: #87C5D6 !important; }
+.status-publish { /* no background - keep alternating rows */ }
+.status-future { background: #CCFF99 !important; }
+.status-private { background:#FFCC99; }

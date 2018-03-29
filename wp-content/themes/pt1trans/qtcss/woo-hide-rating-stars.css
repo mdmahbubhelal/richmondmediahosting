@@ -1,0 +1,3 @@
+.woocommerce ul.products li.product .star-rating {
+	display: none !important;
+}

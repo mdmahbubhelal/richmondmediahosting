@@ -1,0 +1,14 @@
+#main
+{
+   background: transparent !important;
+}
+
+.sheet
+{
+   background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.header
+{
+display: none;
+}

@@ -1,0 +1,14 @@
+# Use PHP5.4 as default
+# Changed PHP handler from application/x-httpd-php54 to application/x-httpd-phpbeta on Mon Nov 23 18:06:26 MST 2015.
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /richmondmediahosting/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /richmondmediahosting/index.php [L]
+</IfModule>
+
+# END WordPress

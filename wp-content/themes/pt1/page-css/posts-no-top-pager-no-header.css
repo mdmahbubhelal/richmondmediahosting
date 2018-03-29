@@ -1,0 +1,8 @@
+/* Top Post Pager */
+div#top-prevnextpost a {
+	display: none !important;
+}
+
+.header {
+display:none;
+}
