@@ -1,0 +1,47 @@
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+.checkbox_label{
+    margin-bottom: 0;
+}
+#category_list,
+.apply_child_categories{
+    margin-top: 10px;
+}
+#form_cart_rule .invalid-field,
+#form_price_rule .invalid-field{
+    border: 1px solid red;
+}
+#form_cart_rule .error,
+#form_price_rule .error{
+    color: red;
+    display: inline-block;
+    padding: 0 5px;
+}
+.woo-discount-version {
+    font-size: 16px;
+}
+.license-success{
+    color: green;
+}
+#based_on_purchase_history_fields{
+    margin-top: 10px;
+    display: none;
+}
+.product_based_condition_cont button,
+.product_based_condition_cont select,
+.product_based_condition_cont input,
+.product_based_condition_cont label{
+    margin: 10px 0;
+}
+.woo-support-in_pro{
+    font-style: italic;
+    color: #999;
+}
+.discount_product_option_list_con{
+    display: inline-block;
+}
