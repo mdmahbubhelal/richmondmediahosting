@@ -1035,7 +1035,7 @@ function wptc_post_meta_output( $type ) {
             case 'tags' :
                 $j = 0;
                 $post_tags = get_the_tags();
-                $tot_tags = count( $post_tags );
+                $tot_tags = @count( $post_tags );
                 if ( $post_tags ) :
                     $the_tags = '';
                     foreach ( $post_tags as $tag ) :

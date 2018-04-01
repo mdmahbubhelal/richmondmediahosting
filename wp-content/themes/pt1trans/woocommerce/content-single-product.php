@@ -20,8 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+// https://www.youtube.com/watch?v=wqlRtry1L5I
+// https://www.youtube.com/watch?v=aen8ieJuB88
 ?>
-
 <?php
 	/**
 	 * woocommerce_before_single_product hook.

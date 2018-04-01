@@ -153,15 +153,9 @@ if ( ! defined( 'ABSPATH' ) ) {
              
              if(is_user_logged_in()){
               $a= WC()->cart->get_total();  ?>
-			<strong>$<?php	echo $a-$_final_total_discount; ?> </strong>	
+				<strong>$<?php	echo $a-$_final_total_discount; ?> </strong>	
 			<?php }
-			
-			else {  
-				  wc_cart_totals_order_total_html();
-				
-				}?>
-				
-				
+			else {wc_cart_totals_order_total_html(); }?>
 			</td>
 		
 		</tr>
@@ -170,8 +164,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	</table>
 
-	<div class="wc-proceed-to-checkout">
-		<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
+	<div class="wcProceedToCheckout">
+		<button type="submit" class="button buttonUpdateCart" name="update_cart" disabled> <?php esc_attr_e( 'Update cart', 'woocommerce' ); ?> </button> 
+		<a href="<?php echo esc_url( wc_get_checkout_url() );?>" class="checkout-button button buttonCheckout"> <?php esc_html_e( 'Proceed to checkout', 'woocommerce' ); ?> </a>
+		<?php //do_action( 'woocommerce_proceed_to_checkout' ); ?>
 	</div>
 
 	<?php do_action( 'woocommerce_after_cart_totals' ); ?>
