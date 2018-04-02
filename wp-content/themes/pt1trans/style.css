@@ -4404,3 +4404,10 @@ margin: 5px 0 0 0;
     font-size: 18px;
     text-transform: capitalize;
     }
+.productVariationTable{font-size: 14px !important;}
+.productVariationTable.table>tbody>tr>th{}
+.productVariationTable.table>tbody>tr>td{vertical-align: middle;}
+.productVariationTable.table>tbody>tr>td>img{max-width: 100%;
+    height: auto;
+    margin: 0;
+    width: 50px;}

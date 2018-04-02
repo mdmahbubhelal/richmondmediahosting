@@ -22,6 +22,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // https://www.youtube.com/watch?v=wqlRtry1L5I
 // https://www.youtube.com/watch?v=aen8ieJuB88
+// $variation['max_qty'];
+// $variation['min_qty'];
+// $variation['is_purchasable'];
+// $variation['is_in_stock'];
+// $variation['display_regular_price'];
 ?>
 <?php
 	/**
@@ -37,71 +42,71 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 }
 ?>
 
-<div id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-	<?php
-		/**
-		 * woocommerce_before_single_product_summary hook.
-		 *
-		 * @hooked woocommerce_show_product_sale_flash - 10
-		 * @hooked woocommerce_show_product_images - 20
-		 */
+<div id="product-<?php the_ID(); ?>" <?php post_class('row'); ?>>
+	<?php global $product;
+	if ($product->is_type( 'variable' )) {  
+		echo '<div class="col-sm-4">';
+			echo '<img class="img-responsive" src="'. get_the_post_thumbnail_url() .'" alt="product image">'; 
+			echo '<div class="productSummery">'. get_the_excerpt() .'</div>';
+		echo '</div>';
+		
+		echo '<div class="col-sm-8">';
+			echo '<h2 class="title">'. $product->get_title() .'</h2>';
+			$variations =  $product->get_available_variations(); 
+			if ($variations) {
+				echo '<table class="table table-hover productVariationTable">';
+					echo '<thead>';
+					echo '<tr>';
+						echo '<th>Image</th>';
+						echo '<th>SKU</th>';
+						echo '<th>Description</th>';
+						echo '<th>Price</th>';
+						echo '<th>Quantity</th>';
+						echo '<th>Favorite</th>';
+					echo '</tr>';
+					echo '</thead>';
+					echo '<tbody>';
+					foreach ($variations as $variation) {
+						if ($variation['is_purchasable'] > 0) {
+							echo '<tr>';
+								echo '<td><img src="'. $variation['image']['thumb_src'] .'"></td>';
+								echo '<td>'. $variation['sku'] .'</td>';
+								echo '<td>'. $variation['variation_description'] .'</td>';
+								echo '<td>'. $variation['display_price'] .'</td>';
+								echo '<td><input type="number" id="" max="'.$variation['max_qty'].'" min="'. $variation['min_qty'] .'" value="1"></td>';
+								echo '<td> heart <td>';
+							echo '</tr>';
+						}
+					}
+					echo '</tbody>';
+				echo '</table>';
+			}
+			echo '<br><pre>'. print_r($variations, true) .'</pre>';
+			// https://nicola.blog/2015/09/18/creating-custom-add-to-cart-url/
+			echo '<a herf="'. site_url() .'/?add-to-cart=123&variation_id=117&attribute_size=Small&attribute_color=Black" class="btn btn-info btn-md">ADD TO CART</a>';
+			echo '<br><br><br><br><br>';
+			echo '<div class="productFooter">';
+				echo '<div class="sku"> <strong>SKU:</strong> ' . $product->get_sku() . '</div>';
+				$terms = get_the_terms( get_the_ID(), 'product_cat' );
+				if ($terms) {
+					echo '<ul class="productCatList">';
+					echo '<li><strong>Category : </strong></li>';
+					foreach ($terms as $term) {
+						echo '<li>'. $term->name .'</li>';
+					}
+					echo '</ul>';
+				}
+			echo '</div>';
+		echo '</div>';
+	} else {
 		do_action( 'woocommerce_before_single_product_summary' );
-	?>
-
-	<div class="summary entry-summary">
-
-		<?php
-			/**
-			 * woocommerce_single_product_summary hook.
-			 *
-			 * @hooked woocommerce_template_single_title - 5
-			 * @hooked woocommerce_template_single_rating - 10
-			 * @hooked woocommerce_template_single_price - 10
-			 * @hooked woocommerce_template_single_excerpt - 20
-			 * @hooked woocommerce_template_single_add_to_cart - 30
-			 * @hooked woocommerce_template_single_meta - 40
-			 * @hooked woocommerce_template_single_sharing - 50
-			 * @hooked WC_Structured_Data::generate_product_data() - 60
-			 */
+		echo '<div class="summary entry-summary">';
 			do_action( 'woocommerce_single_product_summary' );
-		?>
-              <?php 
-                      if(is_user_logged_in()){
-
-                           $current_user = wp_get_current_user();
-			   $meta= get_user_meta($current_user->ID);  
-                           $user_discount_array = array();
-			   
-			   $user_discount_array['EStimNoPALS']   =$meta['E-Stim (Not PALS)']['0']; 
-			   $user_discount_array['cestimhesmed']   =$meta['Ches Med']['0']; 
-			   $user_discount_array['generalitem']   =$meta['General Item']['0']; 
-			   $user_discount_array['basicssignature']   =$meta['BASICS Signature']['0']; 
-                           $_id= get_the_ID();
-                           $discount_type =   get_field('discount_type',$_id);
-                           foreach($user_discount_array as $key=>$value){
-
-			     if($key == $discount_type){
-			      echo '<br>Discount on this product : <b>' .$value.'%</b>';
-			     }
-
-		          }
-                 }
-              ?> 
-
-	</div><!-- .summary -->
-
-	<?php
-		/**
-		 * woocommerce_after_single_product_summary hook.
-		 *
-		 * @hooked woocommerce_output_product_data_tabs - 10
-		 * @hooked woocommerce_upsell_display - 15
-		 * @hooked woocommerce_output_related_products - 20
-		 */
+			echo '<a href="' . get_home_url() . '?add-to-cart='. get_the_ID() .'&quantity=2">Add to cart</a>'; 
+		echo '</div>';
 		do_action( 'woocommerce_after_single_product_summary' );
+	}
 	?>
-
 </div><!-- #product-<?php the_ID(); ?> -->
 
 
